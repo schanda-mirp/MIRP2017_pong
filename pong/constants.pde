@@ -1,5 +1,5 @@
 // Display Size
-int displayWidth=500, displayHeight=500;
+int displayWidth=800, displayHeight=500;
 
 // Velocity Cnstants
 float BALL_VELOCITY = 20; //This is the MAX speed of the ball.
@@ -9,7 +9,7 @@ float PADDLE_VELOCITY = 10;
 int bgColor = 0;
 
 // Ball parameters
-float ballX, ballY;
+float ballX=displayWidth/2, ballY=displayHeight/2;
 float ballVx, ballVy; // ballVx is always BALL_VELOCTY or -BALL_VELOCITY; ballVy varies.
 float ballRadius = 10;
 int ballColor = 255;
@@ -27,7 +27,7 @@ int leftScore, rightScore;
 char LEFT_UP = 'q', LEFT_DOWN = 'a';
 
 // Controls for the Right Paddle
-char RIGHT_UP = 'o', RIGHT_DOWN = 'l';
+char RIGHT_UP = 'o', RIGHT_DOWN = 'k';
 
 // Game Controls
 char RESET = 'r', PAUSE = 'p', START = 's';
