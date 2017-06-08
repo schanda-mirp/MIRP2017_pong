@@ -20,22 +20,10 @@ void collisionBall()
   if (ballX < paddleWidth  && ballY>  leftPaddle - paddleLength/2 && ballY < leftPaddle + paddleLength/2 )                          //collision with the left paddle
     {
      
-      /*if ( leftPaddle - ballY <=20 )
-      {
-        ballX= paddleWidth + ballRadius;
-        ballVy=-BALL_VELOCITY;
-        ballVx*=-1 + 0.5;
-      }
-      if ( ballY-leftPaddle  <=20 )
-      {
-        ballX= paddleWidth + ballRadius;
-        //ballVy=BALL_VELOCITY;
-        ballVx=(-1) ;
-      }
-        else{*/
+     
           ballX= paddleWidth + ballRadius;
-         // ballVy=BALL_VELOCITY;
-          ballVx*=-1;//}
+         ballVy= BALL_VELOCITY*(ballY - leftPaddle)/buffer;
+          ballVx*=-1;
         
     }
   else if (ballX < 0 )
@@ -46,6 +34,7 @@ void collisionBall()
         
           ballX= displayWidth -paddleWidth - ballRadius;
         //  ballVy=BALL_VELOCITY;
+          ballVy= BALL_VELOCITY*(ballY - rightPaddle)/buffer;
           ballVx*=-1;
        
         

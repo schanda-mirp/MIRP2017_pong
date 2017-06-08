@@ -13,18 +13,58 @@ void draw() {
 void drawGameScreen() {
   // Draw background
   background(bgColor);
-  // Update Ball Velocity and Resolve Collisions
+  textSize(50);
+  if (gameState == 0)
+     {gameStart();
+      resetGame();}
+     
+  if (gameState == 2)
+     {gamePause();}
+     
+  if (gameState == 4)
+     {
+       fill(255);
+       text("Right player won" , displayWidth/2 - 250, displayHeight/2);
+       text("To play again press 'r'", displayWidth/2 - 250, 3*displayHeight/4);
+     }
   
-  // Update Ball and Paddle Positions
-  updateBallPosition();
+   if (gameState == 5)
+     {
+       fill(255);
+       text("Left player won" , displayWidth/2 - 250, displayHeight/2);
+       text("To play again press 'r'", displayWidth/2 - 250, 3*displayHeight/4);
+     }
+  
+  if (gameState == 3)
+    {
+      fill(255);
+      textSize(24);
+      text("Start game        => 's'", 0, 30);
+      textSize(24);
+      text("Pause game        => 'Spacebar'", 0,60);
+      textSize(24);
+      text("Reset game        => 'r'", 0, 90);
+      textSize(24);
+      text("Left paddle up    => 'q'", 0, 120);
+      textSize(24);
+      text("Left paddle down  => 'a'", 0, 150);
+      textSize(24);
+      text("Right paddle up   => 'o'", 0, 180);
+      textSize(24);
+      text("Right paddle down => 'k'", 0, 210);
+    }
+  
+  if (gameState == 1)
+  {// Update Ball and Paddle Positions
+    updateBallPosition();
   updatePaddlePositions();
-  
+  // Update Ball Velocity and Resolve Collisions
   updateBallVelocity();
   // Draw Ball and Paddles
   drawBall();
   drawPaddles();
   // Display Scores
-  displayScores();
+  displayScores();}
 }
 
 void drawBall() {
@@ -47,6 +87,10 @@ void drawPaddles() {
 void resetGame(){
   // Reset Ball and Paddle Positions
   // Reset Ball Velocity
+  leftScore=0; rightScore=0;
+  leftPaddle=displayHeight/2; rightPaddle=displayHeight/2;
+  ballX=displayWidth/2; ballY=displayHeight/2;
+  ballVx=-BALL_VELOCITY; ballVy=0;
 }
 
 void displayScores() {
@@ -55,4 +99,8 @@ void displayScores() {
   //text("Right", displayWidth - 100, 100);
   text(rightScore, displayWidth - 100, 200);
   // Display Left and Right player Scores
+  if (rightScore == 10)
+     gameState=4;
+  if (leftScore == 10)
+     gameState=5;
 }
