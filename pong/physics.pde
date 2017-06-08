@@ -1,13 +1,68 @@
 void updateBallVelocity() {
   // Detect Ball collisions with walls or paddles
   // If collide with paddle, or top/bottom wall, then bounce off
+  
+  collisionBall();
+  
   // If collides with left wall, right player gains one point
   // If collides with right wall, left player gains one point
 }
 
 void collisionBall()
 {
-  
+  if (ballY <  ballRadius )                                            //collision with the upper screen
+     {ballY= 0 + ballRadius;
+     ballVy*= -1;}
+  else if (ballY > displayHeight - ballRadius )                        //collision with the lower screen
+     {ballY= displayHeight- ballRadius;
+     ballVy*= -1;}
+     
+  if (ballX < paddleWidth  && ballY>  leftPaddle - paddleLength/2 && ballY < leftPaddle + paddleLength/2 )                          //collision with the left paddle
+    {
+     
+      /*if ( leftPaddle - ballY <=20 )
+      {
+        ballX= paddleWidth + ballRadius;
+        ballVy=-BALL_VELOCITY;
+        ballVx*=-1 + 0.5;
+      }
+      if ( ballY-leftPaddle  <=20 )
+      {
+        ballX= paddleWidth + ballRadius;
+        //ballVy=BALL_VELOCITY;
+        ballVx=(-1) ;
+      }
+        else{*/
+          ballX= paddleWidth + ballRadius;
+         // ballVy=BALL_VELOCITY;
+          ballVx*=-1;//}
+        
+    }
+  else if (ballX < 0 )
+      {leftLose();}
+  else if (ballX > displayWidth- paddleWidth && ballY>  rightPaddle - paddleLength/2 && ballY< rightPaddle + paddleLength/2 )       //collision with the right paddle
+    {
+     
+        
+          ballX= displayWidth -paddleWidth - ballRadius;
+        //  ballVy=BALL_VELOCITY;
+          ballVx*=-1;
+       
+        
+        
+      //ballX= displayWidth -paddleWidth - ballRadius;
+      //ballVx*= -1;
+    }
+  else if (ballX > displayWidth)
+      rightLose();
+ /* else if (ballX > displayWidth)
+      rightLose();*/
+ /* if (ballX < 0 + ballRadius )
+     {ballX= 0 + ballRadius;
+     ballVx*= -1;}
+  else if (ballX > displayWidth - ballRadius )
+     {ballX= displayWidth- ballRadius;
+     ballVx*= -1;} */
 }
 
 void updateBallPosition() {
